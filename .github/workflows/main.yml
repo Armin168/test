@@ -1,0 +1,37 @@
+name: build and push
+
+on:
+  push:
+    branches: ['main']
+    tags:
+      - 'v*'
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: 'checkout git'
+        uses: actions/checkout@v3
+      - name: 'setup nodejs'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.x
+      - name: npm install and build
+        run: |
+          npm install
+          npm run build
+      - name: docker build and push
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          push: true
+          registry: 'ghcr.io'
+          username: 'armin168'
+          password: ${{ github.token }}
+          repository: armin168/auth-service
+          tags: ${{github.run_number}}
