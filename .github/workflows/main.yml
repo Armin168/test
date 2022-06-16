@@ -14,9 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get current date
+      - name: set build number
         id: build_number
-        run: echo "::set-output name=version::$(date +'%Y.%m').${{env.build_number}}"
+        run: echo "::set-output name=version::$(date +%Y.%m).${{env.build_number}}"
       - name: 'checkout git'
         uses: actions/checkout@v3
       - name: 'setup nodejs'
