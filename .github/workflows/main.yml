@@ -18,6 +18,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.14.x
+      - name: Output Run ID
+        run: echo ${{ GITHUB_RUN_ID }}
+      - name: Output Run Number
+        run: echo ${{ GITHUB_RUN_NUMBER }}
+      - name: Output Run Attempt
+        run: echo ${{ GITHUB_RUN_ATTEMPT }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -38,4 +44,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{$(date +%y).$(date +%m) github.run_number}}
+            ghcr.io/armin168/auth-service:22.06.${{github.GITHUB_RUN_NUMBER}}
