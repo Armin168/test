@@ -1,0 +1,30 @@
+version: '3.5'
+
+networks:
+  local:
+    name: local
+
+services:
+  db:
+    container_name: 'mysql'
+    image: 'mysql:8.0.29'
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authservice
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+    ports:
+      - 3306:3306
+    networks:
+      - local
+
+  adminer:
+    container_name: 'adminer'
+    image: 'adminer:4.8.1'
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - local
