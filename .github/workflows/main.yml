@@ -40,4 +40,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{env.DAY_OF_WEEK}}
+            ghcr.io/armin168/auth-service:${{env.build_number}}
