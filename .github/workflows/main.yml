@@ -8,8 +8,6 @@ on:
   pull_request:
     branches: ['main']
 
-env:
-  build_number: $(date '+%y.%m.')${{github.run_number}}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,4 +42,3 @@ jobs:
           push: true
           tags: |
             ghcr.io/armin168/auth-service:${{steps.tagname.outputs.tagname}}
-            ghcr.io/armin168/auth-service:${{env.build_number}}
