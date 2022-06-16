@@ -3,7 +3,6 @@ RUN mkdir -p /app && chown -R node:node /app
 USER node
 WORKDIR /app
 
-
 LABEL org.opencontainers.image.source https://github.com/Armin168/test
 
 ENV NODE_ENV production
