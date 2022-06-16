@@ -14,6 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: build_number
+        run: echo "::set-output name=version::$(date +'%Y.%m').${{env.build_number}}"
       - name: 'checkout git'
         uses: actions/checkout@v3
       - name: 'setup nodejs'
@@ -40,4 +43,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{env.build_number}}
+            ghcr.io/armin168/auth-service:${{steps.build_number.outputs.version}}
