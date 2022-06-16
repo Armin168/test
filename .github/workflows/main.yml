@@ -30,7 +30,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: armin168
           password: ${{ secrets.PAT }}
       - name: docker build and push
         uses: docker/build-push-action@v3
@@ -39,4 +39,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/armin168/auth-server:latest
-            ghcr.io/user/auth-server:${{github.run_number}}
+            ghcr.io/armin168/auth-server:${{github.run_number}}
