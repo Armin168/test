@@ -44,4 +44,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{github.run_number}}
+            ghcr.io/armin168/auth-service:22.06.${{github.run_number}}
