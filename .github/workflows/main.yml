@@ -14,9 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: set build number
-        id: prefix_build_number
-        run: echo "::set-output name=abc::$(date '+%y.%m')"
+      - name: set tag name
+        id: tagname
+        run: echo "::set-output name=tagname::$(date +'%y.%m.')${{env.build_number}}"
       - name: 'checkout git'
         uses: actions/checkout@v3
       - name: 'setup nodejs'
@@ -43,4 +43,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{steps.prefix_build_number.outputs.abc}}.${{env.build_number}}
+            ghcr.io/armin168/auth-service:${{steps.tagname.outputs.tagname}}
