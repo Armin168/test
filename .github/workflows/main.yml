@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: set build number
         id: prefix_build_number
-        run: echo "::set-output name=version::$(date +%y.%m)"
+        run: echo "::set-output name=abc::$(date '+%y.%m')"
       - name: 'checkout git'
         uses: actions/checkout@v3
       - name: 'setup nodejs'
@@ -43,4 +43,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{steps.prefix_build_number.outputs}}.${{env.build_number}}
+            ghcr.io/armin168/auth-service:${{steps.prefix_build_number.outputs.abc}}.${{env.build_number}}
