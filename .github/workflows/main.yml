@@ -43,4 +43,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/armin168/auth-service:${{steps.prefix_build_number.outputs.version}}.${{env.build_number}}
+            ghcr.io/armin168/auth-service:${{steps.prefix_build_number.outputs}}.${{env.build_number}}
